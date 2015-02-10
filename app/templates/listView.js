@@ -20,4 +20,4 @@ var <%= config.moduleClass %>List = Marionette.LayoutView.extend({
 
 });
 
-module.exports = <%= config.moduleClass %>Detail;
+module.exports = <%= config.moduleClass %>List;

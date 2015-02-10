@@ -182,7 +182,7 @@ module.exports = generator.Base.extend({
     }
 
     if(config.entityDir) {
-      entityDir = path.resolve(config.entityDir, './' + inf.pluralize(config.moduleName));
+      entityDir = path.resolve(config.entityDir);
     }
 
     // create the root app file in specified dir
