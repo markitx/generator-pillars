@@ -48,6 +48,10 @@ module.exports = generator.Base.extend({
               name: 'handlebars templates',
               value: 'hbsTemplates',
               checked: true
+            },
+            {
+              name: 'entities',
+              checked: true
             }
         ]
     },
@@ -81,6 +85,22 @@ module.exports = generator.Base.extend({
         }
       }
     },
+    {
+      type: 'input',
+      name: 'entityDir',
+      store: true,
+      message: 'What directory should the module\'s entities be created in?',
+      default: './entities',
+      when: function (answers) {
+        var entities = _.indexOf(answers.includes, 'entities') > -1;
+
+        if (entities) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },    
     {
       type: 'confirm',
       name: 'defaultTemplates',
@@ -127,6 +147,10 @@ module.exports = generator.Base.extend({
         config.hbsDir = props.hbsDir + '/';
       }
 
+      if(props.entityDir) {
+        config.entityDir = props.entityDir + '/';
+      }
+
       config.includes = props.includes || [];
 
       config.moduleName = props.moduleName;
@@ -139,7 +163,8 @@ module.exports = generator.Base.extend({
   app: function () {
     var self = this,
         config = this.config,
-        moduleDir, appDir, hbsDir;
+        moduleDir, appDir, 
+        entityDir, hbsDir;
 
     if (!config.moduleName) {
       return;
@@ -156,6 +181,10 @@ module.exports = generator.Base.extend({
       hbsDir = path.resolve(config.hbsDir, './' + inf.pluralize(config.moduleName));
     }
 
+    if(config.entityDir) {
+      entityDir = path.resolve(config.entityDir, './' + inf.pluralize(config.moduleName));
+    }
+
     // create the root app file in specified dir
     this.template('app.js', appDir + '/' + config.pluralName + '.app.js');
 
@@ -167,6 +196,12 @@ module.exports = generator.Base.extend({
       if(includeName === 'hbsTemplates') {
         self.template('template-list.hbs', hbsDir + '/' + config.moduleName + '-list.hbs');
         self.template('template-detail.hbs', hbsDir + '/' + config.moduleName + '-detail.hbs');
+      
+      } else if(includeName === 'entities') {
+
+        self.template('model.js', entityDir + '/' + config.moduleClass + '.js');
+        self.template('collection.js', entityDir + '/' + inf.pluralize(config.moduleClass) + '.js');
+
       } else {
         self.template(includeName + '.js', moduleDir + '/' + includeName + '.js');
       }
