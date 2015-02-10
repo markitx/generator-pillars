@@ -1,0 +1,21 @@
+{
+  "name": "generator-pillars",
+  "version": "1.0.0",
+  "description": "A yeoman generator to quickly build new admin modules",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "inflection": "^1.6.0",
+    "underscore": "^1.7.0",
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.18.8"
+  }
+}
