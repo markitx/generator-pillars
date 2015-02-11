@@ -54,7 +54,7 @@ var <%= config.moduleClass %>Controller = Marionette.Controller.extend({
 
         var layout = this.layout = new BaseView({
             model: model,
-            mainView: detailView
+            mainView: DetailView
         });
 
         layout.fetching = isFetching;
