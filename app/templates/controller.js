@@ -17,14 +17,16 @@ var <%= config.moduleClass %>Controller = Marionette.Controller.extend({
         this.data = {};
     },
 
-    listView: function() {
-        var collection;
-        if(this.data.list) {
-            collection = this.data.list;
-        } else {
-            collection = new Collection();
-            this.data.list = collection;
+    getCollection: function() {
+        if(!this.data.list) {
+            this.data.list = new Collection();
         }
+
+        return this.data.list;
+    },
+
+    listView: function() {
+        var collection = this.getCollection();
 
         var layout = this.layout = new BaseView({
             collection: collection,
@@ -39,13 +41,13 @@ var <%= config.moduleClass %>Controller = Marionette.Controller.extend({
     },
 
     detailView: function(detailID) {
-        var collection = this.data.list;
+        var collection = this.getCollection();
 
         var model,
             isFetching = false; 
                        
         // if collection try to get detail info and fill model with it.
-        if(collection) {
+        if(collection.length) {
             model = collection.get(detailID);
         } else {
             model = new Model({ id: detailID });
