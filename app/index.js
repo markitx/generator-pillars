@@ -35,6 +35,11 @@ module.exports = generator.Base.extend({
                 checked: true
             }, 
             {
+                name: 'search view',
+                value: 'searchView',
+                checked: true
+            }, 
+            {
                 name: 'list view',
                 value: 'listView',
                 checked: true
