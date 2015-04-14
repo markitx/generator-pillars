@@ -12,19 +12,19 @@ module.exports = generator.Base.extend({
     var done = this.async();
 
     // replace it with a short and sweet description of your generator
-    console.log(chalk.magenta('You\'re using the fantabulous Backbone/Marionette Pillar Generator.'));
+    console.log(chalk.magenta('You\'re using the fantabulous Backbone/Marionette Pillar Generator. \n'));
 
     var prompts = [{
       type: 'input',
       name: 'moduleName',
-      message: 'What\'s the name of your module? (use singular form, like "user")',
+      message: 'What\'s the name of your module? (use singular form, like "user") \n',
       default: 'example'
     },
     {
         type: 'checkbox',
         name: 'includes',
         store: true,
-        message: 'Which module elements do you want generated?',
+        message: 'Which module elements do you want generated? \n',
         choices: [
             {
                 name: 'controller',
@@ -64,21 +64,21 @@ module.exports = generator.Base.extend({
       type: 'input',
       name: 'appFileDir',
       store: true,
-      message: 'Which directory should we create the app file? (Relative to the directory you are currently in)?',
+      message: 'Which directory should we create the app file? (Relative to the directory you are currently in)? \n',
       default: './'
     },
     {
       type: 'input',
       name: 'moduleDir',
       store: true,
-      message: 'Which directory should we create the module dir? (Relative to the directory you are currently in)?',
+      message: 'Which directory should we create the module dir? (Relative to the directory you are currently in)? \n',
       default: './modules'
     },
     {
       type: 'input',
       name: 'hbsDir',
       store: true,
-      message: 'What directory should the module\'s templates be created in?',
+      message: 'What directory should the module\'s templates be created in? \n',
       default: './templates',
       when: function (answers) {
         var hbsTemplates = _.indexOf(answers.includes, 'hbsTemplates') > -1;
@@ -94,7 +94,7 @@ module.exports = generator.Base.extend({
       type: 'input',
       name: 'entityDir',
       store: true,
-      message: 'What directory should the module\'s entities be created in?',
+      message: 'What directory should the module\'s entities be created in? \n',
       default: './entities',
       when: function (answers) {
         var entities = _.indexOf(answers.includes, 'entities') > -1;
@@ -110,13 +110,13 @@ module.exports = generator.Base.extend({
       type: 'confirm',
       name: 'defaultTemplates',
       store: true,
-      message: 'Use default generator templates?',
+      message: 'Use default generator templates? \n',
       default: true
     }, 
     {
       type: 'input',
       name: 'templateDir',
-      message: 'Ok, what directory can we find your templates? (Relative to the directory you are currently in)',
+      message: 'Ok, what directory can we find your templates? (Relative to the directory you are currently in) \n',
       when: function (answers) {
         if (answers.defaultTemplates === false) {
           return true;
